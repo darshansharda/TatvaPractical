@@ -1,5 +1,7 @@
 package com.tatvapractical.model
 
+import java.io.Serializable
+
 data class MoviesModel(
     val genre: List<String>,
     val actors: List<String>,
@@ -10,4 +12,4 @@ data class MoviesModel(
     val year: String,
     val image_url: String,
     val thumb_url: String
-)
+) : Serializable

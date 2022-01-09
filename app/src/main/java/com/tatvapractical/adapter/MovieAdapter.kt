@@ -1,6 +1,7 @@
 package com.tatvapractical.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.tatvapractical.R
 import com.tatvapractical.databinding.RowMovieBinding
 import com.tatvapractical.model.MoviesModel
+import com.tatvapractical.ui.ViewMovieDetailActivity
 
 class MovieAdapter(private val context: Context, private val moviesList: List<MoviesModel>) :
     RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
@@ -26,6 +28,15 @@ class MovieAdapter(private val context: Context, private val moviesList: List<Mo
         holder.binding.apply {
             tvName.text = moviesList[position].name
             Glide.with(context).load(moviesList[position].thumb_url).into(ivImage)
+        }
+
+        holder.itemView.setOnClickListener {
+            context.startActivity(
+                Intent(
+                    context,
+                    ViewMovieDetailActivity::class.java
+                ).putExtra("movieDetail", moviesList[holder.adapterPosition])
+            )
         }
 
     }

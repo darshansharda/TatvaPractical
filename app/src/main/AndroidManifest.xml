@@ -13,6 +13,9 @@
         android:theme="@style/Theme.TatvaPractical"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.ViewMovieDetailActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>

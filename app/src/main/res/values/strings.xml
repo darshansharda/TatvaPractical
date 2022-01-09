@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TatvaPractical</string>
+    <string name="rating">Rating: %s</string>
+    <string name="director">Director: %s</string>
+    <string name="starring">Starring: %s</string>
+    <string name="genre">Genre: %s</string>
 </resources>
