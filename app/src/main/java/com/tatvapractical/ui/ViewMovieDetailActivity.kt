@@ -1,5 +1,6 @@
 package com.tatvapractical.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -26,9 +27,28 @@ class ViewMovieDetailActivity : AppCompatActivity() {
             tvName.text = movieDetail.name
             tvDescription.text = movieDetail.desc
             tvRating.text = getString(R.string.rating, movieDetail.rating)
-            tvDirector.text = getString(R.string.director, movieDetail.directors.toString().replace("[","").replace("]",""))
-            tvStarring.text = getString(R.string.starring, movieDetail.actors.toString().replace("[","").replace("]",""))
-            tvGenre.text = getString(R.string.genre, movieDetail.genre.toString().replace("[","").replace("]",""))
+            tvDirector.text = getString(
+                R.string.director,
+                movieDetail.directors.toString().replace("[", "").replace("]", "")
+            )
+            tvStarring.text = getString(
+                R.string.starring,
+                movieDetail.actors.toString().replace("[", "").replace("]", "")
+            )
+            tvGenre.text = getString(
+                R.string.genre,
+                movieDetail.genre.toString().replace("[", "").replace("]", "")
+            )
+
+            btnOpenImdb.setOnClickListener {
+                startActivity(
+                    Intent(
+                        this@ViewMovieDetailActivity,
+                        WebViewActivity::class.java
+                    ).putExtra("url", movieDetail.imdb_url)
+                )
+            }
+
         }
     }
 

@@ -59,6 +59,9 @@ class MainActivity : AppCompatActivity() {
                         genreList.add(model)
                     }
 
+                    val list = genreList.sortedWith(compareBy(GenreModel::genre))
+                    genreList.clear()
+                    genreList.addAll(list)
                     binding.rvGenre.adapter?.notifyDataSetChanged()
 
                 }

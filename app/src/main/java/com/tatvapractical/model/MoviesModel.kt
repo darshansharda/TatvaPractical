@@ -11,5 +11,6 @@ data class MoviesModel(
     val rating: String,
     val year: String,
     val image_url: String,
-    val thumb_url: String
+    val thumb_url: String,
+    val imdb_url: String
 ) : Serializable
