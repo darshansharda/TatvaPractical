@@ -6,10 +6,13 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.tatvapractical.R
+import com.tatvapractical.adapter.GenreAdapter
 import com.tatvapractical.api.Status
 import com.tatvapractical.databinding.ActivityMainBinding
 import com.tatvapractical.model.GenreModel
+import com.tatvapractical.model.MoviesModel
 import com.tatvapractical.viewmodel.HomeViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +25,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.rvGenre.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = GenreAdapter(this@MainActivity, genreList)
+
+        }
         setObserver()
     }
 
@@ -40,11 +48,18 @@ class MainActivity : AppCompatActivity() {
                             genre.add(it.data[i].genre[j])
                         }
                     }
-
-                    for (i in 0 until genre.size) {
-                        val model = GenreModel(genre = genre.elementAt(i))
+                    for (i in genre.indices) {
+                        val movies = arrayListOf<MoviesModel>()
+                        for (j in it.data.indices) {
+                            if (it.data[j].genre.contains(genre.elementAt(i))) {
+                                movies.add(it.data[j])
+                            }
+                        }
+                        val model = GenreModel(genre.elementAt(i), movies)
                         genreList.add(model)
                     }
+
+                    binding.rvGenre.adapter?.notifyDataSetChanged()
 
                 }
 
